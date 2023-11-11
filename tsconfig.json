@@ -1,0 +1,71 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ESNext"
+    ],
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "composite": true,
+    "strict": false,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "types": [
+      
+    ],
+    "paths": {
+      "components/*": [
+        "./components/*"
+      ],
+      "lib/*": [
+        "./lib/*"
+      ],
+      "models/*": [
+        "./models/*"
+      ],
+      "pages/*": [
+        "./pages/*"
+      ],
+      "styles/*": [
+        "./styles/*"
+      ],
+      "vendor/*": [
+        "./vendor/*"
+      ],
+      "public/*": [
+        "./public/*"
+      ],
+      "@/*": [
+        "./*"
+      ]
+    },
+    "incremental": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
