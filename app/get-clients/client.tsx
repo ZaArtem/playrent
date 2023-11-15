@@ -14,7 +14,7 @@ export default function Client({data}) {
 
     
     const result = clients.map(({orders,client}, index) => {
-        orders=orders.map((item)=><><Link href={`/organisation/groups/`}>{item}</Link><br /></>)
+        orders=orders.map((item)=><><b>{item}</b><br /></>)
         console.log("ord",orders);
         return <tr onClick={()=>router.push(`/get-clients/${client.id}`)} key={index}>
                 <td >{client.familiya+" "+client.imya+" "+client.otchestvo}</td>
@@ -27,7 +27,8 @@ export default function Client({data}) {
     });
 
     return <div>
-            <h1>Компоненты</h1>
+            <h1>Клиенты</h1>
+            <Link href="/get-clients/new-client">Создать нового клиента</Link>
             <table className="iksweb">
                 <thead>
                     <tr>

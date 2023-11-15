@@ -25,7 +25,7 @@ export default function Client({data}) {
     });
 
     return <div>
-            <h1>Компоненты</h1>
+            <h1>Заказы</h1>
             <table className="iksweb">
                 <thead>
                     <tr>

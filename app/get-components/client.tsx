@@ -3,6 +3,7 @@
 import React, {useState} from "react";
 import "@/styles.css";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Client({data}) {
 
@@ -27,6 +28,7 @@ export default function Client({data}) {
 
     return <div>
             <h1>Компоненты</h1>
+            <Link href="/get-components/new-component">Создать новый компонент</Link>
             <table className="iksweb">
                 <thead>
                     <tr>
