@@ -1,49 +1,64 @@
 'use client';
 
-import React, {useMemo, useState} from "react";
-import "@/styles.css";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { revalidatePath } from "next/cache";
+import React, { useMemo, useState } from 'react';
+import '@/styles.css';
+import Link from 'next/link';
 import Select from 'react-select'
 
-export default function Client({submit}) {
+export default function Client({ all_kinds, all_types, submit }) {
+	const [kinds, setKinds] = useState();
+	const [component_types, setTypes] = useState(); 
+	const all_kind = all_kinds.map(({ id, title }, index) => {
 
-    const [Kinds, setKinds] = useState();
+		return { value: id, label: title }
 
-    console.log(Kinds)
-    const options = [
-        { value: 'instrument_kind:1', label: 'Сопрано-саксофон изогнутый' },
-        { value: 'instrument_kind:2', label: 'Сопрано-саксофон прямой' },
-        { value: 'instrument_kind:3', label: 'Альт-саксофон' },
-        { value: 'instrument_kind:4', label: 'Классическая гитара шестиструнная 2/4' },
-        { value: 'instrument_kind:5', label: 'Электрогитара 3/4' },
-        { value: 'instrument_kind:6', label: 'Скрипка 2/4' },
-        { value: 'instrument_kind:7', label: 'Скрипка 3/4' },
-        { value: 'instrument_kind:mdzxwj6agx1aygf5hnm2', label: 'Скрипка 4/4' }];
+	});
+	const options = useMemo(
+		() => all_kind,
+		[]
 
-    const handleChange = e => {
-        setKinds(e.map(it => it.value));
-    }
+	);
+	const all_type = all_types.map(({ id, title }, index) => {
 
-    return <div>
-        <Link href="/get-components">Назад</Link>
-            <div>
-                <form action={submit} style={{display:"flex"}}>
-                    <input type="text" name="title" />
-                    <input type="text" name="serial"/>
-                    <input type="text" name="type"/>
-                    <Select options={options}  onChange={handleChange} isMulti  />
-                    <input type="hidden" name="kinds" value={Kinds}/>
-                    <input type="text" name="state" />
-                    <input type="number" name="buy_price"/>
-                    <input type="number" name="price"/>
+		return { value: id, label: title }
 
-                    <button type="submit">Сохранить</button>
-                </form>
-            </div>
-     
-        </div>;
-    
+	});
+	const type_options = useMemo(
+		() => all_type,
+		[]
+
+	);
+	const handleChange = e => {
+		setKinds(e.map(it => it.value));
+	}
+	const handleChangeType = e => {
+		setTypes(e.value);
+	}
+
+	return <div>
+		<Link href="/get-components">Назад</Link>
+		<div>
+			<form action={submit} style={{ display: 'flex', flexDirection: 'column' }}>
+				<b><label>Название</label></b>
+				<input type="text" name="title" />
+				<b><label>Серийный номер</label></b>
+				<input type="text" name="serial" />
+				<b><label>Тип инструмента</label></b>
+				<Select options={options} onChange={handleChange} isMulti />
+				<input type="hidden" name="kinds" value={kinds} />
+				<b><label>Тип компонента</label></b>
+				<Select options={type_options} onChange={handleChangeType} isMulti />
+				<input type="hidden" name="kinds" value={kinds} />
+				<b><label>Состояние</label></b>
+				<input type="text" name="state" />
+				<b><label>Цена покупки</label></b>
+				<input type="number" name="buy_price" />
+				<b><label>Цена аренды</label></b>
+				<input type="number" name="price" />
+				<button type="submit">Сохранить</button>
+			</form>
+		</div>
+	</div>;
+
 
 } 

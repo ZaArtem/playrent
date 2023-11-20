@@ -1,60 +1,59 @@
 'use client';
 
-import React, {useState} from "react";
-import "@/styles.css";
-import Link from "next/link";
-import { useRouter } from 'next/navigation'
-export default function Client({data,submit}) {
+import React, { useState } from 'react';
+import '@/styles.css';
+import Link from 'next/link';
+export default function Client({ client, submit }) {
+	const [hide, setHide] = useState(false);
+	const [show, setShow] = useState(true);
+	function redact() {
+		if (hide == false) {
+			setHide(true);
+			setShow(false);
+		} else {
+			setHide(false);
+			setShow(true);
+		}
 
-
-    const [client, setClient] = useState(data);
-    const [hide, setHide] = useState(false);
-    const [show, setShow] = useState(true);
-    function Redact(){
-        if (hide==false){
-            setHide(true);
-            setShow(false);
-        }else{
-            setHide(false);
-            setShow(true);
-        }
-
-    }
-
-    return <div>
-        <Link href="/get-clients">Назад</Link>
-        {hide&&(
-            <div>
-                <form action={submit} style={{display:"flex"}}>
-                    <input type="text" name="familiya" placeholder={data[0].familiya} defaultValue={data[0].familiya} />
-                    <input type="text" name="imya" placeholder={data[0].imya} defaultValue={data[0].imya} />
-                    <input type="text" name="otchestvo" placeholder={data[0].otchestvo} defaultValue={data[0].otchestvo} />
-                    <input type="hidden" name="id" value={data[0].id}/>
-                    <input type="text" name="email" placeholder={data[0].email} defaultValue={data[0].email}  />
-                    <input type="text" name="phone" placeholder={data[0].phone} defaultValue={data[0].phone} />
-                    <input type="text" name="registration_address" placeholder={data[0].registration_address.address} defaultValue={data[0].registration_address.address}/>
-                    <input type="hidden" name="registration_address_id" value={data[0].registration_address.id}/>
-                    <input type="text" name="actual_address" placeholder={data[0].actual_address.address} defaultValue={data[0].actual_address.address}/>
-                    <input type="hidden" name="actual_address_id" value={data[0].actual_address.id}/>
-                    <button onClick={()=>Redact()}>Назад</button><br/>
-                    <button type="submit">Сохранить</button>
-                </form>
-            </div>)
-        }
-        {show&&(
-            <div>
-                <p>{data[0].familiya} </p>
-                <p>{data[0].imya}</p>
-                <p>{data[0].otchestvo}</p>
-                <p>{data[0].email}</p>
-                <p>{data[0].phone}</p>
-                <p>{data[0].price}</p>
-                <p>{data[0].registration_address.address}</p>
-                <p>{data[0].actual_address.address}</p>
-                <button onClick={()=>Redact()}>Редактировать</button>
-            </div>)
-        }  
-        </div>;
-    
-
+	}
+	return <div>
+		{hide && (
+			<div>
+				<form action={submit} style={{ display: 'flex', flexDirection: 'column'}}>
+					<b><label htmlFor="familiya">Фамилия</label></b>
+					<input type="text" name="familiya" placeholder={client.familiya} defaultValue={client.familiya} />
+					<b><label htmlFor="imya">Имя</label></b>
+					<input type="text" name="imya" placeholder={client.imya} defaultValue={client.imya} />
+					<b><label htmlFor="otchestvo">Отчество</label></b>
+					<input type="text" name="otchestvo" placeholder={client.otchestvo} defaultValue={client.otchestvo} />
+					<input type="hidden" name="id" value={client.id} />
+					<b><label htmlFor="email">Почта</label></b>
+					<input type="text" name="email" placeholder={client.email} defaultValue={client.email} />
+					<b><label htmlFor="phone">Телефон:</label></b>
+					<input type="text" name="phone" placeholder={client.phone} defaultValue={client.phone} />
+					<b><label htmlFor="registration_address">Адрес регистрации</label></b>
+					<input type="text" name="registration_address" placeholder={client.registration_address.address} defaultValue={client.registration_address.address} />
+					<input type="hidden" name="registration_address_id" value={client.registration_address.id} />
+					<b><label htmlFor="actual_address">Адрес проживания</label></b>
+					<input type="text" name="actual_address" placeholder={client.actual_address.address} defaultValue={client.actual_address.address} />
+					<input type="hidden" name="actual_address_id" value={client.actual_address.id} />
+					<b><button onClick={() => redact()}>Назад</button><br /></b>
+					<b><button type="submit">Сохранить</button></b>
+				</form>
+			</div>)
+		}
+		{show && (
+			<div>
+			<Link href="/get-clients">Назад</Link>
+				<p><b>Фамилия: </b>{client.familiya} </p>
+				<p><b>Имя: </b>{client.imya}</p>
+				<p><b>Отчество: </b>{client.otchestvo}</p>
+				<p><b>Почта: </b>{client.email}</p>
+				<p><b>Телефон: </b>{client.phone}</p>
+				<p><b>Адрес регистрации: </b>{client.registration_address.address}</p>
+				<p><b>Адрес проживания: </b>{client.actual_address.address}</p><br />
+				<b><button onClick={() => redact()}>Редактировать</button></b>
+			</div>)
+		}
+	</div>;
 } 
