@@ -22,18 +22,25 @@ export default function Client({ data }) {
 	});
 
 	return <div>
+		<nav>
+			<ul>
+				<li><a href="/">Главная</a></li>
+				<li><a href="/get-clients">Клиенты</a></li>
+				<li><a href="/get-components">Компоненты</a></li>
+			</ul>
+		</nav>
 		<h1>Заказы</h1>
 		<table className="iksweb">
 			<thead>
 				<tr>
 					<th><b>Номер заказа</b></th>
 					<th><b>Ф.И.О. клиента</b></th>
-					<th><b>Номер телефона</b></th>
+					<th><b>Номер телефона и почта</b></th>
 					<th><b>Список компонентов</b></th>
 					<th><b>Расчетный день</b></th>
 					<th><b>Состояние</b></th>
 					<th><b>Ежемесячный платеж</b></th>
-					<th><b>Сколько оплачено</b></th>
+					{/* <th><b>Сколько оплачено</b></th> */}
 				</tr>
 			</thead>
 			<tbody>{result}</tbody>

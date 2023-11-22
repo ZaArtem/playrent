@@ -18,8 +18,8 @@ export default function Client({ client, submit }) {
 	}
 	return <div>
 		{hide && (
-			<div>
-				<form action={submit} style={{ display: 'flex', flexDirection: 'column'}}>
+			<div className='container'>
+				<form action={submit} style={{ display: 'flex', flexDirection: 'column' }}>
 					<b><label htmlFor="familiya">Фамилия</label></b>
 					<input type="text" name="familiya" placeholder={client.familiya} defaultValue={client.familiya} />
 					<b><label htmlFor="imya">Имя</label></b>
@@ -44,14 +44,20 @@ export default function Client({ client, submit }) {
 		}
 		{show && (
 			<div>
-			<Link href="/get-clients">Назад</Link>
+				<nav>
+					<ul>
+						<li><a href="/get-clients">Назад</a></li>
+						<li><a href="/get-order">Заказы</a></li>
+						<li><a href="/get-components">Компоненты</a></li>
+					</ul>
+				</nav>
 				<p><b>Фамилия: </b>{client.familiya} </p>
 				<p><b>Имя: </b>{client.imya}</p>
 				<p><b>Отчество: </b>{client.otchestvo}</p>
 				<p><b>Почта: </b>{client.email}</p>
 				<p><b>Телефон: </b>{client.phone}</p>
 				<p><b>Адрес регистрации: </b>{client.registration_address.address}</p>
-				<p><b>Адрес проживания: </b>{client.actual_address.address}</p><br />
+				<p><b>Адрес проживания: </b>{client.actual_address.address}</p><br/>
 				<b><button onClick={() => redact()}>Редактировать</button></b>
 			</div>)
 		}

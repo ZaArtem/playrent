@@ -7,7 +7,7 @@ import Select from 'react-select'
 
 export default function Client({ all_kinds, all_types, submit }) {
 	const [kinds, setKinds] = useState();
-	const [component_types, setTypes] = useState(); 
+	const [component_types, setTypes] = useState();
 	const all_kind = all_kinds.map(({ id, title }, index) => {
 
 		return { value: id, label: title }
@@ -30,14 +30,22 @@ export default function Client({ all_kinds, all_types, submit }) {
 	);
 	const handleChange = e => {
 		setKinds(e.map(it => it.value));
+		console.log("kinds",kinds)
 	}
 	const handleChangeType = e => {
 		setTypes(e.value);
+		console.log("type",component_types)
 	}
 
 	return <div>
-		<Link href="/get-components">Назад</Link>
-		<div>
+		<nav>
+			<ul>
+				<li><a href="/get-components">Назад</a></li>
+				<li><a href="/get-order">Заказы</a></li>
+				<li><a href="/get-clients">Клиенты</a></li>
+			</ul>
+		</nav>
+		<div className='container'>
 			<form action={submit} style={{ display: 'flex', flexDirection: 'column' }}>
 				<b><label>Название</label></b>
 				<input type="text" name="title" />
@@ -47,8 +55,8 @@ export default function Client({ all_kinds, all_types, submit }) {
 				<Select options={options} onChange={handleChange} isMulti />
 				<input type="hidden" name="kinds" value={kinds} />
 				<b><label>Тип компонента</label></b>
-				<Select options={type_options} onChange={handleChangeType} isMulti />
-				<input type="hidden" name="kinds" value={kinds} />
+				<Select options={type_options} onChange={handleChangeType}/>
+				<input type="hidden" name="type" value={component_types} />
 				<b><label>Состояние</label></b>
 				<input type="text" name="state" />
 				<b><label>Цена покупки</label></b>

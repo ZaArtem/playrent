@@ -21,8 +21,15 @@ export default function Client({ data }) {
 	});
 
 	return <div>
+		<nav>
+			<ul>
+				<li><a href="/">Главная</a></li>
+				<li><a href="/get-order">Заказы</a></li>
+				<li><a href="/get-components">Компоненты</a></li>
+				<li><a href="/get-clients/new-client">Создать нового клиента</a></li>
+			</ul>
+		</nav>
 		<h1>Клиенты</h1>
-		<Link href="/get-clients/new-client">Создать нового клиента</Link>
 		<table className="iksweb">
 			<thead>
 				<tr>

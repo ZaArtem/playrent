@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import Client from "./client";
 import db from '@/db';
 async function submit(formData: FormData) {
@@ -9,8 +10,9 @@ async function submit(formData: FormData) {
 	const state = formData.get("state");
 	const buy_price = formData.get("buy_price");
 	const price = formData.get("price");
-	const result = await db.query(`INSERT INTO component {buy_price:${buy_price}, kinds:[${kinds}] , price:${price}, title:"${title}", type:"component_type:3", serial:"${serial}"};`);
+	const result = await db.query(`INSERT INTO component {buy_price:${buy_price}, kinds:[${kinds}] , price:${price}, title:"${title}", type:${type}, serial:"${serial}"};`);
 	// type = ${type},
+	redirect(`/get-components/`)
 }
 export default async function Page() {
 	const all_kind = await db.query(`SELECT * FROM instrument_kind FETCH component_types`);

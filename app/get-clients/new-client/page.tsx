@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import Client from "./client";
 import db from '@/db';
 async function submit(formData: FormData) {
@@ -14,6 +15,7 @@ async function submit(formData: FormData) {
 	const result = await db.query(`INSERT INTO client {familiya:"${familiya}", imya:"${imya}" , otchestvo:"${otchestvo}", email:"${email}", phone:"${phone}", actual_address:"address:xo2m7fmy6qeh1hmzs9hh", registration_address:"address:xo2m7fmy6qeh1hmzs9hh"};`);
 	console.log(result)
 	//  actual_address:"${actual_address_id}", registration_address:"${registration_address_id},
+	redirect(`/get-clients/`)
 }
 export default async function Page() {
 

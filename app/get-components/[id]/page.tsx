@@ -1,5 +1,7 @@
+import { revalidatePath } from "next/cache";
 import Client from "./client";
 import db from '@/db';
+import {  redirect } from "next/navigation";
 async function submit(formData: FormData) {
 	"use server"
 	const title = formData.get("title");
@@ -11,8 +13,8 @@ async function submit(formData: FormData) {
 	const id = formData.get("id");
 	const price = formData.get("price");
 	const result = await db.query(`UPDATE ${id}  SET buy_price = ${buy_price}, kinds =[${kinds}], type = ${type}, price = ${price}, title = "${title}", serial = "${serial}";`);
-	// type = ${type},
 	console.log(result)
+	redirect(`/get-components/`)
 }
 export default async function Page({
 	params

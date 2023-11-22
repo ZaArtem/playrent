@@ -24,13 +24,19 @@ export default function Client({ data }) {
 	});
 
 	return <div>
-		<Link href="/get-order">Назад</Link>
+		<nav>
+			<ul>
+				<li><a href="/get-order">Назад</a></li>
+				<li><a href="/get-clients">Компоненты</a></li>
+				<li><a href="/get-components">Клиенты</a></li>
+			</ul>
+		</nav>
 		<table className="iksweb">
 			<thead>
 				<tr>
 					<th><b>Номер заказа</b></th>
 					<th><b>Ф.И.О. клиента</b></th>
-					<th><b>Номер телефона</b></th>
+					<th><b>Номер телефона и почта</b></th>
 					<th><b>Список компонентов</b></th>
 					<th><b>Расчетный день</b></th>
 					<th><b>Состояние</b></th>

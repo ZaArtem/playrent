@@ -14,7 +14,7 @@ export default function Client({ data }) {
 			<td>{title}</td>
 			<td>{serial}</td>
 			<td>{type.title}</td>
-			<td>{kinds.map(({ title }) => title)}</td>
+			<td>{kinds.map(({ title }) => <p>{title}</p>)}</td>
 			<td>{state}</td>
 			{/* Кнопка сменить состояние */}
 			<td>{buy_price}</td>
@@ -25,8 +25,15 @@ export default function Client({ data }) {
 	});
 
 	return <div>
+		<nav>
+			<ul>
+				<li><a href="/">Главная</a></li>
+				<li><a href="/get-order">Заказы</a></li>
+				<li><a href="/get-clients">Клиенты</a></li>
+				<li><a href="/get-components/new-component">Создать новый компонент</a></li>
+			</ul>
+		</nav>
 		<h1>Компоненты</h1>
-		<Link href="/get-components/new-component">Создать новый компонент</Link>
 		<table className="iksweb">
 			<thead>
 				<tr>
